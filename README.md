@@ -57,23 +57,24 @@ This project implements a simple XOR-based symmetric cipher. It reads arbitrary 
 pip install BitVector
 
 
+## Security Analysis (Educational)
 
-
-Security Analysis (Educational)
-This implementation demonstrates the mathematical strength of One-Time Pad: with a truly random key the same length as the message or longer, the ciphertext is unbreakable by cryptanalysis.
+This implementation demonstrates the mathematical strength of the One-Time Pad: with a truly random key the same length as the message or longer, the ciphertext is unbreakable by cryptanalysis.
 
 However, the following real-world limitations exist:
 
-#	Limitation	Explanation
-1	No integrity protection	The ciphertext can be modified without detection. An attacker who knows or guesses part of the plaintext can perform a bit-flipping attack to alter the decrypted message.
-2	Key management problem	The key must be the same length as the message or longer and securely transmitted to the recipient. In practice, this makes OTP impractical for most use cases.
-3	No authentication	The recipient cannot verify who sent the message or whether it was tampered with.
-4	Single-use only	Reusing the same key for two different messages breaks the security completely (two-time pad attack).
-This project is intended to teach cryptographic primitives, not to be deployed in production.
+| # | Limitation | Explanation |
+|---|---|---|
+| 1 | No integrity protection | The ciphertext can be modified without detection. An attacker who knows or guesses part of the plaintext can perform a bit-flipping attack to alter the decrypted message. |
+| 2 | Key management problem | The key must be the same length as the message or longer and securely transmitted to the recipient. In practice, this makes OTP impractical for most use cases. |
+| 3 | No authentication | The recipient cannot verify who sent the message or whether it was tampered with. |
+| 4 | Single-use only | Reusing the same key for two different messages breaks the security completely (two-time pad attack). |
 
-Disclaimer
+> This project is intended to teach cryptographic primitives, not to be deployed in production.
+
+## Disclaimer
+
 This cipher is intended for educational demonstration only. It is not suitable for production use. For real-world applications, use established authenticated encryption algorithms such as:
 
-AES-256-GCM
-
-ChaCha20-Poly1305
+- **AES-256-GCM**
+- **ChaCha20-Poly1305**
