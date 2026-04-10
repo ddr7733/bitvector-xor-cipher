@@ -1,46 +1,60 @@
-# bitvector-xor-cipher
-
-Implementation of XOR cipher with Zero Padding using BitVector library.  
+bitvector-xor-cipher
+Implementation of XOR cipher with Zero Padding using BitVector library.
 Educational project demonstrating symmetric encryption, one-time pad principles, and block alignment techniques.
 
-##  For educational purposes only
+For educational purposes only
 
-## Overview
+Overview
+This project implements a simple XOR-based symmetric cipher. It reads arbitrary input (text or file), applies zero padding to align data to 128-bit blocks, and encrypts it using a cryptographically secure random key generated with Python's secrets module.
 
-This project implements a simple XOR-based symmetric cipher. It reads arbitrary input (text or file), applies zero padding to align data to 128-bit blocks, and encrypts it using a cryptographically secure random key generated with Python's `secrets` module.
+How It Works
+Input: Text string or binary file
 
-## How It Works
+Padding: Zero padding applied to reach 128-bit block alignment
 
-1. **Input**: Text string or binary file
-2. **Padding**: Zero padding applied to reach 128-bit block alignment
-3. **Key Generation**: Random key longer than plaintext by 32 bytes (256 bits)
-4. **Encryption**: Bitwise XOR operation (`cipher = data ^ key`)
-5. **Output**: Key saved as `.bin`, ciphertext saved as `.hex`
+Key Generation: Random key longer than plaintext by 32 bytes (256 bits)
 
-## Features
+Encryption: Bitwise XOR operation (cipher = data ^ key)
 
-- XOR cipher following one-time pad principles
-- Zero padding for block alignment
-- Cryptographically secure key generation via `secrets`
-- Bit-level operations using `BitVector` library
-- Supports both plaintext strings and binary files
+Output: Key saved as .bin, ciphertext saved as .hex
 
-## Files
+Features
+XOR cipher following one-time pad principles
 
-| File | Description |
-|------|-------------|
-| `xor_encrypt.py` | Encryption script |
-| `xor_decrypt.py` | Decryption script |
+Zero padding for block alignment
 
+Cryptographically secure key generation via secrets
 
-## Requirements
+Bit-level operations using BitVector library
 
-- Python 3.6+
-- BitVector library
+Supports both plaintext strings and binary files
 
-## Installation
+Files
+File	Description
+xor_encrypt.py	Encryption script
+xor_decrypt.py	Decryption script
+Requirements
+Python 3.6+
 
-```bash
+BitVector library
+
+Installation
+bash
 pip install BitVector
+Security Analysis (Educational)
+This implementation demonstrates the mathematical strength of One-Time Pad: with a truly random key longer than the message, the ciphertext is unbreakable by cryptanalysis.
+
+However, the following real-world limitations exist:
+
+No integrity protection – The ciphertext can be modified without detection. An attacker who knows or guesses part of the plaintext can perform a bit-flipping attack to alter the decrypted message.
+
+Key management problem – The key must be as long as the message and securely transmitted to the recipient. In practice, this makes OTP impractical for most use cases.
+
+No authentication – The recipient cannot verify who sent the message or whether it was tampered with.
+
+Single-use only – Reusing the same key for two different messages breaks the security completely (two-time pad attack).
+
+This project is intended to teach cryptographic primitives, not to be deployed in production.
+
 Disclaimer
-This cipher is intended for educational demonstration only. It is not suitable for production use. For real-world applications, use established algorithms such as AES-256-GCM.
+This cipher is intended for educational demonstration only. It is not suitable for production use. For real-world applications, use established authenticated encryption algorithms such as AES-256-GCM or ChaCha20-Poly1305.
